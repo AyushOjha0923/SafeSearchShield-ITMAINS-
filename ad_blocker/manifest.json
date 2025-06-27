@@ -1,0 +1,21 @@
+{
+    "name": "AD Blocker",
+    "version": "1.0",
+    "manifest_version": 3,
+    "icons": {
+        "128": ""
+    },
+  
+    "permissions": ["declarativeNetRequest"],
+    "host_permissions":["*://*/*"],
+    "declarative_net_request":{
+      "rule_resources":[
+        {
+          "id": "ad_blocking_rules",
+          "enabled":,
+          "path":"rules3.json"
+        }
+      ]
+    }
+
+}
