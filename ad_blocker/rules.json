@@ -38,13 +38,5 @@
       "condition": { 
           "urlFilter": "://.facebook.com/*"
       }
-  },
-  {
-      "id": 6,
-      "priority": 1,
-      "action": { "type": "block" },
-      "condition": { 
-          "urlFilter": "://.google.com/*"
-      }
-  }]
+  }
 ]
