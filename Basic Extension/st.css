@@ -1,0 +1,34 @@
+#jokeElement{
+    background-color: rgba(0, 0, 0, 0.701);
+    color: rgb(245, 245, 245);
+    justify-content: center;
+    border-style:solid ;
+    height:auto;
+    width: 300px;
+    font-family: 'Courier New', Courier, monospace ;
+    margin: 4px;
+    font-size:x-large;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+body{
+    background-color:grey;
+}
+/* #jokeElement{
+    background-color: rgba(26, 24, 24, 0.504);
+    color: whitesmoke;
+    justify-content: center;
+    border-style:solid ;
+    height:auto;
+    width: 300px;
+    font-family: 'Courier New', Courier, monospace ;
+    margin: 4px;
+    font-size:x-large;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+body{
+    background-color: grey;
+} */
