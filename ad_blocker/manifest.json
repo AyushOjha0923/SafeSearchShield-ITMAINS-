@@ -3,7 +3,7 @@
     "version": "1.0",
     "manifest_version": 3,
     "permissions": ["declarativeNetRequest"],
-    "description": "Block ads using declarativenetRequest API"
+    "description": "Block ads using declarativenetRequest API",
     "host_permissions":["*://*/*"],
     "declarative_net_request":{
       "rule_resources":[
