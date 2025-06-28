@@ -37,6 +37,8 @@ step 11: We instert an perfect logo for our extension.
 Step 12: 
 *Advance search filter
 
+created blur.css file , content_scrpit.js file along with nsfwjs.min.js
+
 NSFW model for analysing images and filter them adult content base (accuracy 90%)
 
 An NSFW (Not Safe For Work) image detection model is a type of AI that identifies images containing potentially explicit or inappropriate content. These models are used for content moderation on platforms that allow user-generated content, such as social media, dating apps, and e-commerce sites. They help ensure a safe and appropriate online environment by automatically flagging or filtering out NSFW images.
