@@ -1,6 +1,7 @@
 # SafeSearchShield-ITMAINS-
 Hacksagon IIITM
 
+//safeSearch Shield_.zip is the main project file... extract it....load it in chrome extension and Done...!
 
 Step 1: Created  basic chrome extention showing basic joke using external API/Link.
 
