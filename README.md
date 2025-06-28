@@ -14,3 +14,7 @@ Step 3:
 Step 4:
         Made an alert.html file for showing alert popUp
 
+
+step 5: Added alert.js file for alert.html for showing popup.
+
+step 6: Added background.js file and mention it in the manifest file for blocking the irrelevants word and redirecting to browser homepage.
