@@ -22,3 +22,10 @@ step 6: Added background.js file and mention it in the manifest file for blockin
 step 7: initiate 2 option in alert.js "OK" Or "cancel" 
                 "Ok" --> for forcefully search for word.
                 "cancel" --> redirected to the Home page.
+Step 8: we update backgorund for fetching IP.
+
+Step 9: Updated alert.js for more accurate popup.
+
+step 10:
+
+
