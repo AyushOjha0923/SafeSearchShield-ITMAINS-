@@ -31,3 +31,15 @@ step 10:
         
 
 AIR TABLE is a cloud-based platform that combines the features of a spreadsheet with the functionality of a database. It allows users to create and manage relational databases with a user-friendly, spreadsheet-like interface. Essentially, it's a flexible tool for organizing, collaborating on, and visualizing data for various purposes
+
+step 11: We instert an perfect logo for our extension.
+
+Step 12: 
+*Advance search filter
+
+NSFW model for analysing images and filter them adult content base (accuracy 90%)
+
+An NSFW (Not Safe For Work) image detection model is a type of AI that identifies images containing potentially explicit or inappropriate content. These models are used for content moderation on platforms that allow user-generated content, such as social media, dating apps, and e-commerce sites. They help ensure a safe and appropriate online environment by automatically flagging or filtering out NSFW images.
+
+
+
