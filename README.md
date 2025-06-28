@@ -27,5 +27,5 @@ Step 8: we update backgorund for fetching IP.
 Step 9: Updated alert.js for more accurate popup.
 
 step 10:
-
+        Now we try "Air table" in the background.js for managing and storing the  fetch "IP","QUERY","DATE & TIME","LOCATION". 
 
