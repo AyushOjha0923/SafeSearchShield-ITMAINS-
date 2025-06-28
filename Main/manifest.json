@@ -1,1 +1,18 @@
+{
+    "name": "Adult AD Blocker",
+    "version": "1.0.01",
+    "manifest_version": 3,
+    "permissions": ["declarativeNetRequest"],
+    "description": "Block ads using declarativenetRequest API",
+    "host_permissions":["*://*/*"],
+    "declarative_net_request":{
+      "rule_resources":[
+        {
+          "id": "ad_blocking_rules",
+          "enabled":true,
+          "path":"regex.json"
+        }
+      ]
+    }
 
+}
