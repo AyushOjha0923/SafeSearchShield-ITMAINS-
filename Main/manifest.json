@@ -17,6 +17,20 @@
     "host_permissions":[
         "*://*/*"
     ],
+    "web_accessible_resources": [
+    {
+      "resources": ["blur.css"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["nsfwjs.min.js", "content_script.js"],
+      "css": ["blur.css"],
+      "run_at": "document_idle"
+    }
+  ],
     "background": {
       "service_worker": "background.js"
     },
