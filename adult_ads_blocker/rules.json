@@ -1,19 +1,66 @@
 [
-
     {
-        "id":1,
-        "priority":1,
-        "action": { "type": "block"},
-        "condition": {"urlFilter": "*://*doubleclick.net/*"}
-    
+        "id": 1,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {
+            "urlFilter": "*18+fetish*"
+        }
     },
     {
-        "id":2,
-        "priority":1,
-        "action":{"type":"block"},
-        "condition":{"urlFilter":"*://googleadservices.com/*"}
-    
+        "id": 2,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {
+            "urlFilter": "*bdsm*"
+        }
+    },
+    {
+        "id": 3,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {
+            "urlFilter": "*milf*"
+        }
+    },
+    {
+        "id": 4,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {
+            "urlFilter": "*taboo*"
+        }
+    },
+    {
+        "id": 5,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {
+            "urlFilter": "*thorex*"
+        }
+    },
+    {
+        "id": 6,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {
+            "urlFilter": "*hammer*"
+        }
+    },
+    {
+        "id": 7,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {
+            "urlFilter": "*herbalbooster*"
+        }
+    },
+    {
+        "id": 8,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {
+            "urlFilter": "*vigorman*"
+        }
     }
-     
-    
-    ] 
+]
