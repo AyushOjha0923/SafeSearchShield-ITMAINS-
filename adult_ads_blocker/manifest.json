@@ -10,7 +10,7 @@
         {
           "id": "ad_blocking_rules",
           "enabled":true,
-          "path":"rules.json"
+          "path":"regex.json"
         }
       ]
     }
