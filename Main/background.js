@@ -1,68 +1,107 @@
-// import { searchedWord } from "./background";
 
-let ip_address;
-var initialUrl;
-let toggle = 0; // Initialize toggle to 0
+//----------------------------------------------------------
+let toggleValue = 0;  // Initialize toggle value
 
-var word ;
-// function saveToFile(content, filename) {
-//     const blob = new Blob([content], { type: 'text/plain' });
-//     const link = document.createElement('a');
-//     link.download = filename;
-//     link.href = URL.createObjectURL(blob);
-//     document.body.appendChild(link);
-//     link.click();
-//     document.body.removeChild(link);
-// }
-
-
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// Confirmation dialog logic
-if (confirm('Irrelevant search, do you wish to continue?')) {
-    toggle = 1; // Update toggle to 1 if user clicks OK
-    console.log("Toggle set to:", toggle);
-
-    // Notify background.js of the toggle value
-    chrome.runtime.sendMessage({ action: "updateToggle", toggle });
-
-    fetchIpAddress()
-        .then(result => {
-            if (result) {
-                console.log(result);
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching IP address:', error);
-        })
-        .finally(() => {
-            window.location.href = initialUrl; // Redirect to initial URL after fetch
-        });
-} else {
-    console.log("Toggle remains:", toggle); // Toggle stays 0 if user clicks Cancel
-    // Notify background.js of the toggle value
-    chrome.runtime.sendMessage({ action: "updateToggle", toggle });
-
-    window.location.href = 'https://www.google.com'; // Redirect to Google
+// Listen for URL changes in a tab
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+    if (changeInfo.url) {
+        toggleValue = 0;
+        console.log("URL updated (likely typing in search bar). Toggle reset to 0.");
+    }
+});
+// Function to extract query from URL
+function getQueryParam(url, param) {
+    const params = new URL(url).searchParams;
+    return params.get(param);
 }
 
+chrome.webNavigation.onBeforeNavigate.addListener((details) => {
+    
+    const blockedWords = ['example1', 'example2', 'rape', 'murder', "kill",  "assault", "bomb", "attack", "shoot", "weapon", "terrorism",
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+        "exploitation", "child pornography", "bully", "stalk", "threaten",  "harassment"];
+   
+        const url = new URL(details.url);
 
-// Request the variable from background.js
-chrome.runtime.sendMessage({ action: "getVariable" }, (response) => {
-    if (response && response.data) {
-        initialUrl = response.data;
-    } else {
-        console.error("Failed to get the variable from background.js");
+    const exceptions = [
+        // Educational contexts
+        'cases',
+        'case',
+        'recent case',
+        'num of'
+        
+    ];
+    
+    
+    const query = getQueryParam(url.href, 'q');
+        if (query) {
+            console.log("User searched for:", query);
+          userQuery = query;
+    let shouldBlock = false;
+
+
+       // Check if the query contains any blocked words
+       for (let word of blockedWords) {
+        // Use regex to ensure word boundaries are respected
+        const regex = new RegExp(`\\b${word}\\b`, 'i');
+        if (regex.test(query)) {
+            // Check for exceptions
+            shouldBlock = true; // Assume it should block initially
+            for (let exception of exceptions) {
+                if (query.toLowerCase().includes(exception.toLowerCase())) {
+                    shouldBlock = false; // Do not block if an exception applies
+                    break;
+                }
+            }
+
+            if (shouldBlock) {
+                searchedWord = word;
+                console.log("Blocked due to word:", word);
+            }
+            break; // Stop checking once a word is found
+        }
+    }
+    
+
+    // Additional condition: check toggle value
+    if (shouldBlock && toggleValue === 0) {
+        // Set the URL as the value for myVariable
+        myVariable = url.href;
+        console.log("Blocked URL:", myVariable);
+        
+        // Update tab to the alert page
+        chrome.tabs.update(details.tabId, { url: 'alertpopup.html' });
+    } else if (shouldBlock && toggleValue === 1) {
+        console.log("Allowed URL despite block conditions due to toggle:", url.href);
+    }
+}
+});
+
+// The variable to send (initialized, will be updated when a blocked URL is detected)
+let myVariable = '';
+var searchedWord= '';// variable for word
+var userQuery = '';
+// export{searchedWord};
+
+// Listen for messages from other scripts
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "getData") {
+        console.log("📩 Received request for initialUrl & word");
+
+        sendResponse({
+            initialUrl: myVariable || "https://www.google.com", // Use a fallback if undefined
+            word: userQuery || "N/A"
+        });
+
+        return true; // ✅ Ensures async response works properly
+    }
+    if (request.action === "updateToggle") {
+        toggleValue = request.toggle;
+        console.log("🔄 Toggle updated:", toggleValue);
     }
 });
-// Request the variable from background.js
-chrome.runtime.sendMessage({ action: "getVariabl" }, (response) => {
-    if (response && response.variable) {
-        word = response.variable;
-    } else {
-        console.error("Failed to get the variable from background.js");
-    }
-});
+
+
+//========================================================================================
+
+
