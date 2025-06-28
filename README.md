@@ -18,3 +18,7 @@ Step 4:
 step 5: Added alert.js file for alert.html for showing popup.
 
 step 6: Added background.js file and mention it in the manifest file for blocking the irrelevants word and redirecting to browser homepage.
+
+step 7: initiate 2 option in alert.js "OK" Or "cancel" 
+                "Ok" --> for forcefully search for word.
+                "cancel" --> redirected to the Home page.
