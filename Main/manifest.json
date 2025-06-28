@@ -2,7 +2,6 @@
     "name": "SafeSearch Shield",
     "version": "1.1",
     "manifest_version": 3,
-    "permissions": ["declarativeNetRequest"],
     "description": "Block ads and providing extra protection to your family :)",
     "permissions": [
         "webNavigation",
@@ -10,11 +9,14 @@
         "tabs",
         "scripting",
         "declarativeNetRequest",
-         "geolocation"
+     "geolocation"
     ],
     "host_permissions":[
         "*://*/*"
     ],
+    "background": {
+      "service_worker": "background.js"
+    },
     "declarative_net_request":{
       "rule_resources":[
         {
