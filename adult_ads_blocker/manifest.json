@@ -5,7 +5,7 @@
     "permissions": ["declarativeNetRequest"],
     "description": "Block ads using declarativenetRequest API",
     "host_permissions":["*://*/*"],
-    "declarativeNetRequest":{
+    "declarative_net_request":{
       "rule_resources":[
         {
           "id": "ad_blocking_rules",
