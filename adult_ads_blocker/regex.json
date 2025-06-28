@@ -1,0 +1,11 @@
+
+    [
+        {
+            "id": 1,
+            "priority": 1,
+            "action": { "type": "block" },
+            "condition": { 
+                "regexFilter": "(?i).*\\b(18\\+\\s?fetish|bdsm|mature|singles|milf|taboo|onlyfans|sugar\\s?(daddy|baby))\\b.*"
+            }
+        }
+    ]
