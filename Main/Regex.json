@@ -1,0 +1,63 @@
+
+    [
+        {
+            "id": 1,
+            "priority": 1,
+            "action": { "type": "block" },
+            "condition": { 
+                "regexFilter": "(?i).*\\b(18\\+\\s?fetish|bdsm|mature|singles|milf|taboo|onlyfans|sugar\\s?(daddy|baby))\\b.*"
+            }
+        },
+       
+        {
+            "id": 2,
+            "priority": 1,
+            "action": { "type": "block" },
+            "condition": { 
+                "regexFilter": "(?i).*\\b(thorex|thorex\\s?ultra|hammer|herbalbooster|vigorman)\\b.*"
+            }
+        },
+        {
+            "id": 3,
+            "priority": 1,
+            "action": { "type": "block" },
+            "condition": { 
+                "regexFilter": "(?i).*\\b(camgirl|kink|mature|milf|lust|taboo|cougar|sugar\\s?(daddy|baby)|jsc\\.mgid\\.com)\\b.*"
+            }
+        },
+        {
+            "id": 4,
+            "priority": 1,
+            "action": { "type": "block" },
+            "condition": { 
+                "regexFilter": "(?i).*\\b(camboy|escort|sextoy|nude|nudity|firehorse|hot|sexual|desi|xxx|porn|sex|erotic|adult|fetish|bdsm)\\b.*"
+            }
+        },
+        
+        {
+            "id": 5,
+            "priority": 1,
+            "action": { "type": "block" },
+            "condition": { 
+                "regexFilter": "(?i).*\\b(lust|intimate|kink(?:y)?|vigor|vigorman|VIGOR MAN|viagra|booster|vigorman|vigor|tablet|vigorman\\.net)\\b.*"
+            }
+        },
+        {
+            "id": 6,
+            "priority": 1,
+            "action": { "type": "block" },
+            "condition": { 
+                "regexFilter": "(?i).*jsc\\.mgid\\.com.*\\b(vigorman|vigor|viagra|adult|sextoy|xxx)\\b.*"
+            }
+        },
+        {
+            "id": 7,
+            "priority": 1,
+            "action": { "type": "block" },
+            "condition": { 
+                "regexFilter": "(?i).*jsc\\.mgid\\.com.*\\b(sex|fetish|18\\+|taboo|escort|mature|camgirl|camboy|sugar\\s?(daddy|baby))\\b.*"
+            }
+        }
+      ]
+
+  
