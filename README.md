@@ -28,4 +28,6 @@ Step 9: Updated alert.js for more accurate popup.
 
 step 10:
         Now we try "Air table" in the background.js for managing and storing the  fetch "IP","QUERY","DATE & TIME","LOCATION". 
+        
 
+AIR TABLE is a cloud-based platform that combines the features of a spreadsheet with the functionality of a database. It allows users to create and manage relational databases with a user-friendly, spreadsheet-like interface. Essentially, it's a flexible tool for organizing, collaborating on, and visualizing data for various purposes
