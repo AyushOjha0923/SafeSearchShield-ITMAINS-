@@ -1,10 +1,20 @@
 {
-    "name": "Adult AD Blocker",
-    "version": "1.0.01",
+    "name": "SafeSearch Shield",
+    "version": "1.1",
     "manifest_version": 3,
     "permissions": ["declarativeNetRequest"],
-    "description": "Block ads using declarativenetRequest API",
-    "host_permissions":["*://*/*"],
+    "description": "Block ads and providing extra protection to your family :)",
+    "permissions": [
+        "webNavigation",
+        "storage",
+        "tabs",
+        "scripting",
+        "declarativeNetRequest",
+         "geolocation"
+    ],
+    "host_permissions":[
+        "*://*/*"
+    ],
     "declarative_net_request":{
       "rule_resources":[
         {
