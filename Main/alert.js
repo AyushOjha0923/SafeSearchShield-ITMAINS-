@@ -1,45 +1,57 @@
-let initialUrl = "https://www.google.com"; // Default fallback URL
-let word = "N/A"; // Default searched word
-let toggle = 0; // Initialize toggle
+// import { searchedWord } from "./background";
+
+let ip_address;
+var initialUrl;
+let toggle = 0; // Initialize toggle to 0
+
+var word ;
+// function saveToFile(content, filename) {
+//     const blob = new Blob([content], { type: 'text/plain' });
+//     const link = document.createElement('a');
+//     link.download = filename;
+//     link.href = URL.createObjectURL(blob);
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+// }
 
 
-//  Step 1: Fetch initialUrl
-chrome.runtime.sendMessage({ action: "getData" }, (response) => {
-    if (response && response.initialUrl) {
-        initialUrl = response.initialUrl;
-        word = response.word;
-        console.log(" Got Initial URL:", initialUrl);
-        console.log(" Got searched word:", word);
-    } else {
-        console.error("Failed to get data from background.js. Redirecting...");
-        window.location.href = initialUrl;
-        return;
-    }
 
-    //  Now show confirmation alert
-    processUserChoice();
-});
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+console.log(initialUrl)
+// Confirmation dialog logic
+if (confirm('Irrelevant search, do you wish to continue?')) {
+    toggle = 1; // Update toggle to 1 if user clicks OK
+    console.log("Toggle set to:", toggle);
 
-//  Step 2: Handle user confirmation
-function processUserChoice() {
-    let userChoice = confirm('Irrelevant search detected. Do you wish to continue?');
+    // Notify background.js of the toggle value
+    chrome.runtime.sendMessage({ action: "updateToggle", toggle });
+    console.log("user cliked OK");
+    // Redirect to initial URL
+    window.location.href = initialUrl;
+} else {
+    console.log("Toggle remains:", toggle); // Toggle stays 0 if user clicks Cancel
 
-    if (userChoice) {
-        toggle = 1;
-        console.log(" User clicked OK, setting toggle:", toggle);
+    // Notify background.js of the toggle value
+    chrome.runtime.sendMessage({ action: "updateToggle", toggle });
 
-        // Notify background.js to update toggle
-        chrome.runtime.sendMessage({ action: "updateToggle", toggle });
-        setTimeout(() => {
-                    console.log("➡ Redirecting now...");
-                    window.location.href = initialUrl;
-                }, 1000); // 1 second delay before redirecting
-            }
-     else {
-        console.log("🔴 User clicked Cancel. Redirecting to Google...");
-        chrome.runtime.sendMessage({ action: "updateToggle", toggle });
-        window.location.href = "https://www.google.com";
-    }
+    // Redirect to Google
+    window.location.href = 'https://www.google.com';
 }
-
-
+//-----------------------------------------------------------------------------------------------------------------------------------------
+// Request the variable from background.js
+chrome.runtime.sendMessage({ action: "getVariable" }, (response) => {
+    if (response && response.data) {
+        initialUrl = response.data;
+    } else {
+        console.error("Failed to get the variable from background.js");
+    }
+});
+// Request the variable from background.js
+chrome.runtime.sendMessage({ action: "getVariabl" }, (response) => {
+    if (response && response.variable) {
+        word = response.variable;
+    } else {
+        console.error("Failed to get the variable from background.js");
+    }
+});
