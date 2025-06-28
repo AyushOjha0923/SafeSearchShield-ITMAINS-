@@ -33,6 +33,9 @@ step 10:
 
 AIR TABLE is a cloud-based platform that combines the features of a spreadsheet with the functionality of a database. It allows users to create and manage relational databases with a user-friendly, spreadsheet-like interface. Essentially, it's a flexible tool for organizing, collaborating on, and visualizing data for various purposes
 
+*The air table database is only for Commity members. 
+
+
 step 11: We instert an perfect logo for our extension.
 
 Step 12: 
